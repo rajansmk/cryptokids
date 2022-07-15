@@ -46,7 +46,7 @@ contract cryptokids{
     }
 
     function balance() public view returns(uint){
-        return kidsdetails[msg.sender].amount;
+        return kidsdetails[msg.sender].amount ;
     }
 
     function gettestvalue() public pure returns(uint){

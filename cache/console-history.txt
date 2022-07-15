@@ -1,0 +1,8 @@
+await ethers.getSigners()
+getSigner()
+hre.ethers
+const hre = require("hardhat")
+.exit
+.help
+help
+exit
