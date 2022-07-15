@@ -20,7 +20,7 @@ const Web3Context = createContext(null)
 //     }
 //   }
 export default function Web3Provider({children}) {
-    const caddress="0x1629132A442d3B854C0f6f7AA96F83A29653FBdc"
+    const caddress="0x4D05e2E4941a493c208358fBEba95Adc508dF308"
   const [provider, setProvider] = useState(null)
   const [address, setAddress] = useState(null)
   const [contractread, setContractread] = useState(null)
@@ -50,7 +50,7 @@ export default function Web3Provider({children}) {
         
         setProvider(null)
           setAddress(null)
-          setContract(null)
+          //setContract(null)
           setLoaded(false)
       }
       
@@ -64,6 +64,8 @@ export default function Web3Provider({children}) {
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         await provider.send("eth_requestAccounts", [])
         const signer = provider.getSigner()
+        const signeraddress= await signer.getAddress();
+        console.log(`signer :${signeraddress}`)
         const contractreads = new ethers.Contract(caddress, cryptokids.abi, provider);
         const contractwrites = new ethers.Contract(caddress, cryptokids.abi, signer);
         //   await window.ethereum.request({method:"eth_requestAccounts"})
@@ -73,7 +75,7 @@ export default function Web3Provider({children}) {
         //   const caddress=accounts[0]
         //   const ccontract=nftmarketplace(cweb3)
            setProvider(provider)
-        //   setAddress(caddress)
+           setAddress(signeraddress)
         setContractread(contractreads)
         setContractwrite(contractwrites)
            setLoaded(true)
@@ -110,7 +112,7 @@ export default function Web3Provider({children}) {
     //const { web3, contract, address } = web3Api
 
       return (
-        <Web3Context.Provider value={{ connect,disconnect,provider,contractread,contractwrite,loaded }}>
+        <Web3Context.Provider value={{ connect,disconnect,provider,contractread,contractwrite,loaded,address }}>
           {children}
         </Web3Context.Provider>
       )

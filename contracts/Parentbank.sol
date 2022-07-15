@@ -48,6 +48,12 @@ contract cryptokids{
     function balance() public view returns(uint){
         return kidsdetails[msg.sender].amount ;
     }
+    function mybalance() public pure returns(uint){
+        return 1000000000000000000 ;
+    }
+    function name() public view returns(string memory){
+        return kidsdetails[msg.sender].fname ;
+    }
 
     function gettestvalue() public pure returns(uint){
         return 10;

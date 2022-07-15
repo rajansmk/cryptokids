@@ -1,14 +1,14 @@
 import Link from "next/link";
 import { Web3Context,Web3Provider,web3Api,checkpoint,useWeb3 } from "../../provider"
 export default function Header(){
-    const { connect,disconnect,provider,contract,loaded} = useWeb3();
+    const { connect,disconnect,provider,contract,loaded,address} = useWeb3();
 
     return(
         <div>
             <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
           <Link className="navbar-brand" href="#">
-            Navbar
+            {address ? address : "Navbar" }
           </Link>
           <button
             className="navbar-toggler"
@@ -39,7 +39,11 @@ export default function Header(){
                 </Link>
               </li>
               <li className="nav-item">
-              <button onClick={connect} class="btn btn-primary" type="submit">Connect</button>
+                {!loaded ?
+                <button onClick={connect} className="btn btn-primary" type="submit">Connect</button>
+                :<button onClick={disconnect} className="btn btn-primary" type="submit">Logout</button>
+                }
+              
               
               </li>
               

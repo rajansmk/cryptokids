@@ -37,17 +37,22 @@ export default function about() {
   };
   const depositAmount = async () => {
     debugger;
-    const transaction = await contractwrite.deposit(
-      caddress,
-      fname,
-      lname,
-      lperiod,
-      flag,
-      { value: ethers.utils.parseEther("1.0") }
-    );
-    await transaction.wait();
+    if (contractwrite !== undefined && contractwrite !== null)
+    {
+        const transaction = await contractwrite.deposit(
+            caddress,
+            fname,
+            lname,
+            lperiod,
+            flag,
+            { value: ethers.utils.parseEther("1.0") }
+          );
+          await transaction.wait();
+    }
+    
+    
   };
-  
+
   const Widthraw = async () => {
     debugger;
     const transaction = await contractwrite.widthraw(Widthrawamt);
@@ -57,12 +62,13 @@ export default function about() {
   const getBalance = async () => {
     console.log(contractwrite);
     debugger;
-    const mybalance = await contractread.balance();
-    const value = ethers.BigNumber.from(mybalance);
-    const mybalanceconv = ethers.utils.formatEther(value);
+    const mybalance = await contractwrite.balance();
+    const value = ethers.utils.formatEther(mybalance);
+    //console.log(`my balance ${ethers.utils.formatEther(mybalance)}`)
+    //const mybalanceconv = ethers.utils.formatEther(value);
     //const balance = await contractread.getOwner();
-    setbalanceamt(mybalanceconv);
-    console.log(mybalanceconv);
+    setbalanceamt(value);
+    console.log(value);
   };
   const getOwner = async () => {
     console.log(contractwrite);
