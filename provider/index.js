@@ -20,12 +20,13 @@ const Web3Context = createContext(null)
 //     }
 //   }
 export default function Web3Provider({children}) {
-    const caddress="0x4D05e2E4941a493c208358fBEba95Adc508dF308"
+    const caddress="0x8BF52b4203D6C1887269772C6FF5a5b3384eD3CD"
   const [provider, setProvider] = useState(null)
   const [address, setAddress] = useState(null)
   const [contractread, setContractread] = useState(null)
   const [contractwrite, setContractwrite] = useState(null)
   const [loaded, setLoaded] = useState(false)
+  const [admin, setadmin] = useState(null)
     
     // const [web3Api,setweb3api]=useState(
     //     createWeb3State( {
@@ -34,15 +35,24 @@ export default function Web3Provider({children}) {
     //         address:null
     //     })
     // )
-    useEffect(()=>{
-      if(!provider)
-        {
-            //debugger
-          //connect()
-               
+    
+      
+      useEffect(() => {
+        if (window.ethereum) {
+          window.ethereum.on("accountsChanged", (accounts) => {
+            if (accounts.length > 0) {
+              connect()
+              setAddress(accounts[0]);
+            } else {
+              // setWallet("");
+              // setStatus("🦊 Connect to Metamask using the top right button.");
+            }
+          });
         }
+      }, []);
+   
 
-    },[provider])
+   
 
     const disconnect=async()=>{
       if(provider)
@@ -59,6 +69,7 @@ export default function Web3Provider({children}) {
     const connect=async()=>{
       if(typeof window!=="undefined" && typeof window.ethereum!=="undefined")
       {
+        
         try
         {
         const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -68,12 +79,24 @@ export default function Web3Provider({children}) {
         console.log(`signer :${signeraddress}`)
         const contractreads = new ethers.Contract(caddress, cryptokids.abi, provider);
         const contractwrites = new ethers.Contract(caddress, cryptokids.abi, signer);
+        const isAdmin = await contractwrites.isAdmin()
+        if(isAdmin=="Admin")
+        {
+          setadmin(true);
+          console.log(admin)
+        }
+        else{
+          setadmin(false);
+          console.log(admin)
+        }
         //   await window.ethereum.request({method:"eth_requestAccounts"})
         //   const cweb3= new Web3(window.ethereum)
           
         //   const accounts=await cweb3.eth.getAccounts()
         //   const caddress=accounts[0]
         //   const ccontract=nftmarketplace(cweb3)
+        //setadmin(isAdmin);
+        //console.log(`admin ${isAdmin}`)
            setProvider(provider)
            setAddress(signeraddress)
         setContractread(contractreads)
@@ -112,7 +135,7 @@ export default function Web3Provider({children}) {
     //const { web3, contract, address } = web3Api
 
       return (
-        <Web3Context.Provider value={{ connect,disconnect,provider,contractread,contractwrite,loaded,address }}>
+        <Web3Context.Provider value={{ connect,disconnect,provider,contractread,contractwrite,loaded,address,admin }}>
           {children}
         </Web3Context.Provider>
       )

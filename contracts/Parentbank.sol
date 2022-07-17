@@ -48,6 +48,15 @@ contract cryptokids{
     function balance() public view returns(uint){
         return kidsdetails[msg.sender].amount ;
     }
+    function isAdmin() public view returns(string memory){
+        if(owner==msg.sender)
+        {
+            return "Admin";
+        }
+        else{
+            return "client";
+        }
+    }
     function mybalance() public pure returns(uint){
         return 1000000000000000000 ;
     }

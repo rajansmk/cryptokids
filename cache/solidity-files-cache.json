@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\wamp64\\www\\blockchain\\parentbank\\contracts\\Parentbank.sol": {
-      "lastModificationDate": 1657922825450,
-      "contentHash": "542804282208bfe513d48e036552866e",
+      "lastModificationDate": 1657977699410,
+      "contentHash": "5c7d75eb76a4b9a464c5673a7f43d4b1",
       "sourceName": "contracts/Parentbank.sol",
       "solcConfig": {
         "version": "0.8.9",
