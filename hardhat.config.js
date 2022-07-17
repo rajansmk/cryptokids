@@ -1,7 +1,7 @@
 /** @type import('hardhat/config').HardhatUserConfig */
 require("@nomiclabs/hardhat-waffle")
 const urls=""
-const privatekey="cheap solid day shove soldier grass country mail perfect primary own grid"
+const privatekey=""
 //require("@nomiclabs/hardhat-ganache");
 module.exports = {
   defaultNetwork: "ganache",
