@@ -27,7 +27,14 @@ contract cryptokids{
     function deposit(address addr,string memory _fname,string memory _name,uint _time,bool cwith) payable  public onlyowner{
         
         require(msg.value >= 1 ether,"pay value amount");
-        kidsdetails[addr]=kids(_fname,_name,msg.value,_time,cwith,addr);
+        if(kidsdetails[addr].addr == addr)
+        {
+            kidsdetails[addr].amount +=msg.value * 1 ether;
+        }
+        else{
+            kidsdetails[addr]=kids(_fname,_name,msg.value,_time,cwith,addr);
+        }
+        
         //kid.push(addr);
     }
     function widthraw(uint _amount) public{
