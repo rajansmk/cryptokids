@@ -48,7 +48,6 @@ export default function about() {
             fname,
             lname,
             lperiod,
-            flag,
             { value: ethers.utils.parseEther("1.0") }
           );
           await transaction.wait();

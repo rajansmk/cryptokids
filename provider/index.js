@@ -20,7 +20,9 @@ const Web3Context = createContext(null)
 //     }
 //   }
 export default function Web3Provider({children}) {
-    const caddress="0x8BF52b4203D6C1887269772C6FF5a5b3384eD3CD"
+    //const caddress="0xA34cfeD78FCF1FB4B4D1d62Cc93Ff9b1Ddf834Dd"
+    const caddress="0xa75F2835d28bB1a516cc200095597dB6a8726470"
+    
   const [provider, setProvider] = useState(null)
   const [address, setAddress] = useState(null)
   const [contractread, setContractread] = useState(null)

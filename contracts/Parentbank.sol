@@ -9,11 +9,10 @@ contract cryptokids{
         string lname;
         uint amount;
         uint timestamp;
-        bool canwithdraw;
         address addr;
     }
     mapping(address => kids) public kidsdetails;
-    address[] kid;
+    //address[] kid;
 
 
     constructor(){
@@ -24,7 +23,7 @@ contract cryptokids{
         _;
     }
 
-    function deposit(address addr,string memory _fname,string memory _name,uint _time,bool cwith) payable  public onlyowner{
+    function deposit(address addr,string memory _fname,string memory _name,uint _time) payable  public {
         
         require(msg.value >= 1 ether,"pay value amount");
         if(kidsdetails[addr].addr == addr)
@@ -32,7 +31,7 @@ contract cryptokids{
             kidsdetails[addr].amount +=msg.value * 1 ether;
         }
         else{
-            kidsdetails[addr]=kids(_fname,_name,msg.value,_time,cwith,addr);
+            kidsdetails[addr]=kids(_fname,_name,msg.value,_time,addr);
         }
         
         //kid.push(addr);
@@ -55,6 +54,15 @@ contract cryptokids{
     function balance() public view returns(uint){
         return kidsdetails[msg.sender].amount ;
     }
+
+    function getTotalAmount() public view returns(uint){
+        return address(this).balance ;
+    }
+
+    function getProfile() public view returns(kids memory){
+        return kidsdetails[msg.sender];
+    }
+
     function isAdmin() public view returns(string memory){
         if(owner==msg.sender)
         {
@@ -64,16 +72,7 @@ contract cryptokids{
             return "client";
         }
     }
-    function mybalance() public pure returns(uint){
-        return 1000000000000000000 ;
-    }
-    function name() public view returns(string memory){
-        return kidsdetails[msg.sender].fname ;
-    }
-
-    function gettestvalue() public pure returns(uint){
-        return 10;
-    }
+    
     function getOwner() public view returns(address){
         return owner;
     }
@@ -82,3 +81,4 @@ contract cryptokids{
 
 
 }
+
