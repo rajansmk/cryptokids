@@ -85,6 +85,7 @@ export default function Home() {
     debugger;
     const transaction = await contractwrite.widthraw(ethers.utils.parseEther(Widthrawamt));
     await transaction.wait();
+    getprofile();
   };
 
   const getBalance = async () => {
