@@ -21,7 +21,7 @@ const Web3Context = createContext(null)
 //   }
 export default function Web3Provider({children}) {
     //const caddress="0xA34cfeD78FCF1FB4B4D1d62Cc93Ff9b1Ddf834Dd"
-    const caddress="0xa75F2835d28bB1a516cc200095597dB6a8726470"
+    const caddress="0x2FF8e665D72a05c80Ba7b80ac0d4405b069D6Fd2"
     
   const [provider, setProvider] = useState(null)
   const [address, setAddress] = useState(null)
@@ -85,11 +85,11 @@ export default function Web3Provider({children}) {
         if(isAdmin=="Admin")
         {
           setadmin(true);
-          console.log(admin)
+          //console.log(admin)
         }
         else{
           setadmin(false);
-          console.log(admin)
+          //console.log(admin)
         }
         //   await window.ethereum.request({method:"eth_requestAccounts"})
         //   const cweb3= new Web3(window.ethereum)

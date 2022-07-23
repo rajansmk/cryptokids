@@ -4,7 +4,7 @@ const urls=process.env.DB_URL
 const privatekey=process.env.DB_KEY
 //require("@nomiclabs/hardhat-ganache");
 module.exports = {
-  defaultNetwork: "rinkeby",
+  defaultNetwork: "ganache",
      networks: {
          ganache: {
              url: "HTTP://127.0.0.1:7545",
@@ -13,8 +13,8 @@ module.exports = {
          hardhat: {
         },
         rinkeby: {
-          url: urls,
-          accounts: [privatekey]
+          url: "",
+          accounts: [""]
         }
      },
   solidity: "0.8.9",

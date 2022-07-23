@@ -25,10 +25,10 @@ contract cryptokids{
 
     function deposit(address addr,string memory _fname,string memory _name,uint _time) payable  public {
         
-        require(msg.value >= 1 ether,"pay value amount");
+        require(msg.value >= 0.025 ether,"pay value amount");
         if(kidsdetails[addr].addr == addr)
         {
-            kidsdetails[addr].amount +=msg.value * 1 ether;
+            kidsdetails[addr].amount +=msg.value ;
         }
         else{
             kidsdetails[addr]=kids(_fname,_name,msg.value,_time,addr);
@@ -38,14 +38,14 @@ contract cryptokids{
     }
     function widthraw(uint _amount) public{
 
-         require(kidsdetails[msg.sender].amount >=_amount * 1 ether,"not enough");
+         require(kidsdetails[msg.sender].amount >=_amount,"not enough");
          //require(kidsdetails[msg.sender].canwithdraw == true,"wait for that time");
          uint time=kidsdetails[msg.sender].timestamp;
          if(block.timestamp > time)
          {
-             kidsdetails[msg.sender].amount -=_amount * 1 ether;
+             kidsdetails[msg.sender].amount -=_amount;
              address  addr=kidsdetails[msg.sender].addr;
-             payable(addr).transfer(_amount * 1 ether);
+             payable(addr).transfer(_amount);
 
          }
 

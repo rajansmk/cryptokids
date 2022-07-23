@@ -5,6 +5,7 @@ import cryptokids from "../artifacts/contracts/Parentbank.sol/cryptokids.json";
 const defaultdat = {
   childaddress: "",
   fname: "",
+  amount: "",
   lname: "",
   lperiod: "",
 };
@@ -40,7 +41,11 @@ export default function Home() {
     });
   };
   useEffect(()=>{
-    getprofile()
+    if(address)
+    {
+      getprofile()
+    }
+    
   },[contractwrite,address])
   const resetForm = () => setFormdata(defaultdat);
   // const lnameChange = (event) => {
@@ -69,7 +74,7 @@ export default function Home() {
         form.fname,
         form.lname,
         form.lperiod,
-        { value: ethers.utils.parseEther("1.0") }
+        { value: ethers.utils.parseEther(form.amount) }
       );
       await transaction.wait();
       setFormdata(defaultdat);
@@ -78,24 +83,24 @@ export default function Home() {
 
   const Widthraw = async () => {
     debugger;
-    const transaction = await contractwrite.widthraw(Widthrawamt);
+    const transaction = await contractwrite.widthraw(ethers.utils.parseEther(Widthrawamt));
     await transaction.wait();
   };
 
   const getBalance = async () => {
     console.log(contractwrite);
-    debugger;
+    
     const mybalance = await contractwrite.balance();
     const value = ethers.utils.formatEther(mybalance);
     //console.log(`my balance ${ethers.utils.formatEther(mybalance)}`)
     //const mybalanceconv = ethers.utils.formatEther(value);
     //const balance = await contractread.getOwner();
     setbalanceamt(value);
-    console.log(value);
+    //console.log(value);
   };
   const getprofile = async () => {
     console.log(contractwrite);
-    debugger
+    //debugger
     
     let profiles = await contractwrite.getProfile();
 
@@ -136,6 +141,22 @@ export default function Home() {
                       id="caddress"
                       placeholder="Address"
                       name="childaddress"
+                    />
+                  </div>
+                </div>
+                <div className="form-group">
+                  <label className="control-label col-sm-2" >
+                    Amount Min 0.025:
+                  </label>
+                  <div className="col-sm-10">
+                    <input
+                      type="text"
+                      value={form.amount}
+                      onChange={handleChange}
+                      className="form-control"
+                      id="amount"
+                      placeholder="Amount"
+                      name="amount"
                     />
                   </div>
                 </div>
@@ -235,7 +256,7 @@ export default function Home() {
                 <div className="form-group">
                   <div className="col-sm-offset-2 col-sm-10">
                     <button onClick={getOwner} className="btn btn-default">
-                      Check My Balance
+                      Owner
                     </button>
                   </div>
                 </div>
