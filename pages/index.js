@@ -15,8 +15,7 @@ const defaultprofile = {
   llperiod: "",
 };
 export default function Home() {
-  const { connect, provider, contractread, contractwrite, loaded,address, admin } =
-    useWeb3();
+  const { connect, provider, contractread, contractwrite, loaded,address, admin } = useWeb3();
 
   const [form, setFormdata] = useState(defaultdat)
   const [profile,setProfile]=useState(defaultprofile)
@@ -125,7 +124,7 @@ export default function Home() {
             <div className="col-md-6">
               <div className="contact-form">
                 <div className="form-group">
-                  <label className="control-label col-sm-4" for="fname">
+                  <label className="control-label col-sm-4" >
                     Child Address:
                   </label>
                   <div className="col-sm-10">
@@ -141,7 +140,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="form-group">
-                  <label className="control-label col-sm-2" for="fname">
+                  <label className="control-label col-sm-2" >
                     First Name:
                   </label>
                   <div className="col-sm-10">
@@ -157,7 +156,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="form-group">
-                  <label className="control-label col-sm-2" for="lname">
+                  <label className="control-label col-sm-2" >
                     Last Name:
                   </label>
                   <div className="col-sm-10">
@@ -173,7 +172,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="form-group">
-                  <label className="control-label col-sm-4" for="lname">
+                  <label className="control-label col-sm-4" >
                     Locking period:
                   </label>
                   <div className="col-sm-10">
@@ -243,7 +242,7 @@ export default function Home() {
               </div>
 
               <div className="form-group">
-                <label className="control-label col-sm-4" for="lname">
+                <label className="control-label col-sm-4" >
                   Widthraw:
                 </label>
                 <div className="col-sm-10">
