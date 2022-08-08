@@ -1,0 +1,22 @@
+import pyautogui
+import time
+import random
+
+import keyboard
+#n = random.randint(60,100)
+#t = random.randint(2,10)
+for x in range(5):
+    # Holds down the alt key
+    #pyautogui.moveTo(100, 100, 2, pyautogui.easeInOutQuad)
+    time.sleep(1)
+    pyautogui.scroll(10, x=x*90, y=90 * x)
+    pyautogui.keyDown("alt")
+
+    # Presses the tab key once
+    pyautogui.press("tab")
+    pyautogui.press("tab")
+    
+    # Lets go of the alt key
+    pyautogui.keyUp("alt")
+    #pyautogui.hscroll(200)
+    time.sleep(20 + x)
