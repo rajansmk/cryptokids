@@ -5,6 +5,7 @@ async function main () {
     console.log('Deploying Box...');
     const box = await cryptokids.deploy();
     //console.log("test");
+    //console.log("test");
     await box.deployed();
     console.log('Box deployed to:', box.address);
     console.log('owner address:', owner.address);
