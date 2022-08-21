@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "start:prod":"next start -p 80"
   },
   "dependencies": {
     "bootstrap": "^5.1.3",
