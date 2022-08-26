@@ -41,6 +41,22 @@ export default function Home() {
     });
   };
   useEffect(()=>{
+    const getprofile = async () => {
+      console.log(contractwrite);
+      //debugger
+      
+      let profiles = await contractwrite.getProfile();
+  
+      setProfile({
+        ffname : profiles.fname,
+        llname : profiles.lname,
+        aamount : ethers.utils.formatEther(profiles.amount),
+        llperiod : profiles.timestamp,
+  
+      })
+      //console.log(profiles.lperiod);
+      
+    };
     if(address)
     {
       getprofile()
@@ -99,22 +115,7 @@ export default function Home() {
     setbalanceamt(value);
     //console.log(value);
   };
-  const getprofile = async () => {
-    console.log(contractwrite);
-    //debugger
-    
-    let profiles = await contractwrite.getProfile();
-
-    setProfile({
-      ffname : profiles.fname,
-      llname : profiles.lname,
-      aamount : ethers.utils.formatEther(profiles.amount),
-      llperiod : profiles.timestamp,
-
-    })
-    //console.log(profiles.lperiod);
-    
-  };
+  
   const getOwner = async () => {
     console.log(contractwrite);
     debugger;
